@@ -1,11 +1,11 @@
 import express from "express";
-import notaController from "../controllers/notaController.js";
+import gamesController from "../controllers/gamesController.js";
 const router = express.Router();
 
-router.get("/", notaController.getAll);
-router.get("/:id", notaController.getById); // Nova rota
-router.post("/", notaController.create);
-router.put("/:id", notaController.update);
-router.delete("/:id", notaController.delete);
+router.get("/", gamesController.getAll);
+router.get("/:id", gamesController.getById); // Nova rota
+router.post("/", gamesController.create);
+router.put("/:id", gamesController.update);
+router.delete("/:id", gamesController.delete);
 
 export default router;
