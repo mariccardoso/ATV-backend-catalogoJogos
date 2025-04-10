@@ -81,16 +81,16 @@ class GamesController {
     const { id } = req.params;
 
     try {
-      const nota = await gamesModel.getById(parseInt(id));
+      const game = await gamesModel.getById(parseInt(id));
 
-      if (!nota) {
-        return res.status(404).json({ erro: "Anotação não encontrada" });
+      if (!game) {
+        return res.status(404).json({ erro: "Jogo não encontrado" });
       }
 
-      res.json(nota);
+      res.json(game);
     } catch (error) {
       console.error(error);
-      res.status(500).json({ erro: "Erro ao buscar anotação" });
+      res.status(500).json({ erro: "Erro ao buscar Jogo" });
     }
   };
 }
