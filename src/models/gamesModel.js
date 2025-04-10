@@ -39,7 +39,7 @@ class GamesModel {
         },
       });
     } catch (error) {
-      // Se a Games não for encontrada, o Prisma lançará uma exceção
+      // Se o jogo não for encontrado, o Prisma lançará uma exceção
       if (error.code === "P2025") {
         return null;
       }
@@ -54,7 +54,7 @@ class GamesModel {
       });
       return true;
     } catch (error) {
-      // Se a tarefa não for encontrada, o Prisma lançará uma exceção
+      // Se o jogo não for encontrado, o Prisma lançará uma exceção
       if (error.code === "P2025") {
         return false;
       }

@@ -1,88 +1,96 @@
-# 📌NoteHub API
-<img src="assets/img/notehub-logo.png" alt="NoteHub Logo" width="100%">
+# 🎮 Mari Games API
+<img src="assets/img/mariGamesLogo.png" alt="NoteHub Logo" width="100%">
 
 ## 📝 Introdução
-**Desafio Proposto:** A startup "NoteHub" está desenvolvendo um aplicativo simples de anotações digitais para estudantes. O aplicativo precisa de uma API backend para armazenar e gerenciar as anotações dos usuários. Como o projeto está em fase inicial, a versão 1.0 trabalhará apenas com anotações, sem sistema de usuários ou categorias complexas.
+**Desafio Proposto:** A loja "MariGames"está precisando de um sistema de backend para gerenciar seu inventário, permitindo operações de criação, leitura, atualização e remoção (CRUD) de produtos. A empresa optou por uma arquitetura moderna utilizando Node.js, Express e Prisma ORM para garantir a integridade e persistência dos dados.
+
+
+## ⚒ Tecnologias Utilizadas
+
+
+<img src="https://img.shields.io/badge/Node.js-43853D?style=for-the-badge&logo=node.js&logoColor=white" alt="Node.js Badge" /> | <img src="https://img.shields.io/badge/Prisma-2D3748?style=for-the-badge&logo=prisma&logoColor=white" alt="Prisma Badge" /> | <img src="https://img.shields.io/badge/Express.js-404D59?style=for-the-badge" alt="Express.js Badge" />  | <img src="https://img.shields.io/badge/SQLite-07405E?style=for-the-badge&logo=sqlite&logoColor=white" alt="SQLite Badge" /> | <img src="https://img.shields.io/badge/JavaScript-F7DF1E?style=for-the-badge&logo=javascript&logoColor=black" alt="JavaScript Badge" />
 
 ## 📅 API Endpoints
-| Método HTTP | Endpoint         | Descrição                          |
-|-------------|------------------|------------------------------------|
-| GET         | /notas           | Retorna todas as anotações        |
-| GET         | /notas/{id}      | Retorna uma anotação específica   |
-| POST        | /notas           | Cria uma nova anotação            |
-| PUT         | /notas/{id}      | Atualiza uma anotação existente   |
-| DELETE      | /notas/{id}      | Remove uma anotação específica    |
-### Exemplos de requisições e respostas para cada endpoint
-#### GET /notas
-```http://localhost:4000/notas```
+| Método HTTP | Endpoint         | Descrição                         |
+|-------------|------------------|-----------------------------------|
+| GET         | /games           | Retorna todos os Jogos            |
+| GET         | /games/{id}      | Retorna um jogo específico        |
+| POST        | /games           | Cria um novo jogo                 |
+| PUT         | /games/{id}      | Atualiza um jogo existente        |
+| DELETE      | /games/{id}      | Remove uma jogo específico        |
+
+## Exemplos de requisições e respostas para cada endpoint
+
+#### Buscar todos os Jogos - GET /games
+```http://localhost:4000/games```
 
 ```json
 [
-    {
-        "id": 1,
-        "titulo": "Anotação 1",
-        "conteudo": "Conteúdo da anotação 1",
-        "dataCriacao": "2021-10-10T00:00:00.000Z",
-        "dataAtualizacao": "2021-10-10T00:00:00.000Z"
-    },
-    {
-        "id": 2,
-        "titulo": "Anotação 2",
-        "conteudo": "Conteúdo da anotação 2",
-        "dataCriacao": "2021-10-10T00:00:00.000Z",
-        "dataAtualizacao": "2021-10-10T00:00:00.000Z"
-    }
+  {
+    "id": 1,
+    "title": "It Takes Two",
+    "price": 39.99,
+    "releaseYear": null,
+    "developer": "Hazelight Studios",
+    "genres": null,
+    "platforms": null,
+    "imageUrl": null,
+    "createdAt": "2025-04-10T17:09:03.761Z",
+    "updatedAt": "2025-04-10T17:09:03.761Z"
+  }
 ]
+```
+![alt text](assets/img/getAllMethod.png)
+
+#### Buscar jogo específico - GET /games/{id}
+
+```http://localhost:4000/games/1```
+
+```json
+{
+  {
+    "id": 1,
+    "title": "It Takes Two",
+    "price": 39.99,
+    "releaseYear": null,
+    "developer": "Hazelight Studios",
+    "genres": null,
+    "platforms": null,
+    "imageUrl": null,
+    "createdAt": "2025-04-10T17:09:03.761Z",
+    "updatedAt": "2025-04-10T17:09:03.761Z"
+  }
+}
 ```
 ![alt text](assets/img/getById.png)
 
-#### GET /notas/{id}
-```http://localhost:4000/notas/1```
+#### Criar um novo Jogo - POST /games
+```http://localhost:4000/games```
 
 ```json
 {
-    "id": 1,
-    "titulo": "Anotação 1",
-    "conteudo": "Conteúdo da anotação 1",
-    "dataCriacao": "2021-10-10T00:00:00.000Z",
-    "dataAtualizacao": "2021-10-10T00:00:00.000Z"
+    "title": "Novo Jogo",
+    "price": 00.00,
+    "developer": "Desenvolvedor"
 }
 ```
-![alt text](assets/img/getAll.png)
+![alt text](assets/img/postMethod.png)
 
-#### POST /notas
-```http://localhost:4000/notas```
+#### Atualizar um jogo existente - PUT /games/{id}
+```http://localhost:4000/games/4```
 
 ```json
 {
-    "titulo": "Nova Anotação",
-    "conteudo": "Conteúdo da nova anotação"
+    "developer": "Desenvolvedor Atualizado",
 }
 ```
-![alt text](assets/img/create.png)
+![alt text](assets/img/putMethod.png)
 
-#### PUT /notas/{id}
-```http://localhost:4000/notas/4```
+#### Deletar um jogo do catálogo DELETE /games/{id}
+```http://localhost:4000/games/2```
 
-```json
-{
-    "titulo": "Anotação Atualizada",
-    "conteudo": "Conteúdo da anotação atualizada"
-}
-```
-![alt text](assets/img/update.png)
+![alt text](assets/img/deleteMethod.png)
 
-#### DELETE /notas/{id}
-```http://localhost:4000/notas/4```
-![alt text](assets/img/delete.png)
-
-## 🛠 Tecnologias Utilizadas
-| [<img src="https://nodejs.org/static/images/logo.svg" alt="Node.js Logo" width="60px" style="background-color:transparent;">](https://nodejs.org/) | [<img src="https://cdn.worldvectorlogo.com/logos/express-109.svg" alt="Express Logo" width="50px" style="background-color:transparent;">](https://expressjs.com/) | [<img src="https://www.prisma.io/images/favicon-32x32.png" alt="Prisma Logo" width="30px" style="background-color:transparent;">](https://www.prisma.io/) | [<img src="https://upload.wikimedia.org/wikipedia/commons/3/38/SQLite370.svg" alt="SQLite Logo" width="50px" style="background-color:transparent;">](https://www.sqlite.org/) |
-
-- Node.js
-- Express
-- Prisma
-- SQLite
 
 ## 📊 Como Executar
 1. Instale as dependências do projeto:
