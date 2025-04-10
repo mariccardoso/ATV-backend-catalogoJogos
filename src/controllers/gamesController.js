@@ -27,25 +27,36 @@ class GamesController {
 
   update = async (req, res) => {
     const { id } = req.params;
-    const {  favorita, cor, titulo, conteudo  } = req.body;
+    const {  
+      title,
+      price,
+      releaseYear,
+      developer,
+      genres,
+      platforms,
+      imageUrl, 
+    } = req.body;
 
     try {
-      const notaAtualizada = await gamesModel.update(
+      const gameUpdated = await gamesModel.update(
         parseInt(id),
-        favorita,
-        cor,
-        titulo,
-        conteudo
+        title,
+        price,
+        releaseYear,
+        developer,
+        genres,
+        platforms,
+        imageUrl,
       );
 
-      if (!notaAtualizada) {
-        return res.status(404).json({ erro: "Anotação não encontrada" });
+      if (!gameUpdated) {
+        return res.status(404).json({ erro: "Jogo não encontrado" });
       }
+      res.json(gameUpdated);
 
-      res.json(notaAtualizada);
     } catch (error) {
       console.error(error);
-      res.status(500).json({ erro: "Erro ao atualizar anotação" });
+      res.status(500).json({ erro: "Erro ao atualizar jogo" });
     }
   };
 

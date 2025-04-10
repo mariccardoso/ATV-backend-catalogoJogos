@@ -15,17 +15,27 @@ class GamesModel {
     });
   };
 
-  update = async (id, favorita, cor, titulo, conteudo) => {
-    console.log();
-    
+  update = async (
+    id, 
+    title, 
+    price, 
+    releaseYear, 
+    developer, 
+    genres, 
+    platforms,
+    imageUrl
+  ) => {
     try {
       return await prisma.game.update({
         where: { id },
         data: {
-          favorita: favorita !== undefined ? favorita : true,
-          titulo,
-          cor,
-          conteudo
+          title,
+          price,
+          releaseYear,
+          developer,
+          genres,
+          platforms,
+          imageUrl,
         },
       });
     } catch (error) {
