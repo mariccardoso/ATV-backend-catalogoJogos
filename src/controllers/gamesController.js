@@ -64,16 +64,16 @@ class GamesController {
     const { id } = req.params;
 
     try {
-      const sucesso = await gamesModel.delete(parseInt(id));
+      const sucess = await gamesModel.delete(parseInt(id));
 
-      if (!sucesso) {
-        return res.status(404).json({ erro: "Anotação não encontrada" });
+      if (!sucess) {
+        return res.status(404).json({ erro: "Jogo não encontrado" });
       }
 
       res.status(204).send();
     } catch (error) {
       console.error(error);
-      res.status(500).json({ erro: "Erro ao excluir anotação" });
+      res.status(500).json({ erro: "Erro ao excluir jogo" });
     }
   };
 
