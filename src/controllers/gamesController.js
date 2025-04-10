@@ -1,27 +1,27 @@
-import notaModel from "../models/notaModel.js";
+import gamesModel from "../models/gamesModel.js";
 
-class NotaController {
+class GamesController {
   getAll = async (req, res) => {
     try {
-      const notas = await notaModel.getAll();
-      res.json(notas);
+      const games = await gamesModel.getAll();
+      res.json(games);
     } catch (error) {
       console.error(error);
-      res.status(500).json({ erro: "Erro ao buscar anotações" });
+      res.status(500).json({ erro: "Erro ao buscar jogos" });
     }
   };
 
   create = async (req, res) => {
-    const { titulo, conteudo} = req.body;
+    const { title, price, developer} = req.body;
     try {
-      if (!titulo || !conteudo) {
-        return res.status(400).json({ erro: "Titulo e conteúdo são obrigatórios" });
+      if (!title || !price || !developer) {
+        return res.status(400).json({ erro: "Titulo, Preço e Desenvolvedor são campos obrigatórios" });
       }
-      const novaNota = await notaModel.create(titulo, conteudo);
-      res.status(201).json(novaNota);
+      const newGame = await gamesModel.create(title, price, developer);
+      res.status(201).json(newGame);
     } catch (error) {
       console.error(error);
-      res.status(500).json({ erro: "Erro ao criar anotação" });
+      res.status(500).json({ erro: "Erro ao criar jogo" });
     }
   };
 
@@ -30,7 +30,7 @@ class NotaController {
     const {  favorita, cor, titulo, conteudo  } = req.body;
 
     try {
-      const notaAtualizada = await notaModel.update(
+      const notaAtualizada = await gamesModel.update(
         parseInt(id),
         favorita,
         cor,
@@ -53,7 +53,7 @@ class NotaController {
     const { id } = req.params;
 
     try {
-      const sucesso = await notaModel.delete(parseInt(id));
+      const sucesso = await gamesModel.delete(parseInt(id));
 
       if (!sucesso) {
         return res.status(404).json({ erro: "Anotação não encontrada" });
@@ -70,7 +70,7 @@ class NotaController {
     const { id } = req.params;
 
     try {
-      const nota = await notaModel.getById(parseInt(id));
+      const nota = await gamesModel.getById(parseInt(id));
 
       if (!nota) {
         return res.status(404).json({ erro: "Anotação não encontrada" });
@@ -84,4 +84,4 @@ class NotaController {
   };
 }
 
-export default new NotaController();
+export default new GamesController();

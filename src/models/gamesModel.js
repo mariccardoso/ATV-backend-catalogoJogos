@@ -1,15 +1,16 @@
 import prisma from "../../prisma/client.js";
 
-class NotaModel {
+class GamesModel {
   getAll = async () => {
-    return await prisma.note.findMany();
+    return await prisma.game.findMany();
   };
 
-  create = async (titulo, conteudo) => {
-    return await prisma.note.create({
+  create = async (title, price, developer ) => {
+    return await prisma.game.create({
       data: {
-        titulo,
-        conteudo
+        title,
+        price,
+        developer,
       },
     });
   };
@@ -18,7 +19,7 @@ class NotaModel {
     console.log();
     
     try {
-      return await prisma.note.update({
+      return await prisma.game.update({
         where: { id },
         data: {
           favorita: favorita !== undefined ? favorita : true,
@@ -28,7 +29,7 @@ class NotaModel {
         },
       });
     } catch (error) {
-      // Se a nota não for encontrada, o Prisma lançará uma exceção
+      // Se a Games não for encontrada, o Prisma lançará uma exceção
       if (error.code === "P2025") {
         return null;
       }
@@ -38,7 +39,7 @@ class NotaModel {
 
   delete = async (id) => {
     try {
-      await prisma.note.delete({
+      await prisma.game.delete({
         where: { id },
       });
       return true;
@@ -52,10 +53,10 @@ class NotaModel {
   };
 
   getById = async (id) => {
-    return await prisma.note.findUnique({
+    return await prisma.game.findUnique({
       where: { id },
     });
   };
 }
 
-export default new NotaModel();
+export default new GamesModel();
